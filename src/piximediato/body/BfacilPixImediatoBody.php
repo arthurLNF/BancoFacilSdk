@@ -4,6 +4,9 @@
  *
  * @author Weider
  */
+
+namespace BancoFacilPixSdk\PixImediato\Body;
+
 class BfacilPixImediatoBody {
     public float $valor;
     public string $chave;

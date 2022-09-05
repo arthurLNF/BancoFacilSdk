@@ -1,0 +1,22 @@
+{
+    "name": "bancofacil/pix-sdk",
+    "description": "SDK em PHP para gerenciamento de PIX",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Arthur Lemos Nogueira Filho",
+            "email": "arthur.filho@campotec.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "7.0",
+        "phpunit/phpunit": ">9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BancoFacilPixSdk\\": "src/"
+        }
+    }
+}

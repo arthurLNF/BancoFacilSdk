@@ -4,7 +4,10 @@
  *
  * @author Weider
  */
-class BfacilAutenticacaoResponse extends AbstractBfacilResponse{
+
+namespace BancoFacilPixSdk\Auth\Response;
+
+class BfacilAutenticacaoResponse extends \BancoFacilPixSdk\AbstractBfacilResponse{
     public string $data;
     
     function __construct(bool $sucesso, string $error, string $data) {

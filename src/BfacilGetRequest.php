@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Description of BfacilGetRequest
  *
  * @author Weider
  */
-class BfacilGetRequest extends AbstractBfacilRequest{
-    
-    function __construct(\GuzzleHttp\ClientInterface $client = null, string $baseUrl = null, string $token = null) {
-        parent::__construct($client, $baseUrl, $token);
+
+namespace BancoFacilPixSdk;
+
+class BfacilGetRequest extends AbstractBfacilRequest {
+
+    function __construct(string $baseUrl, string $token, \GuzzleHttp\ClientInterface $client = null) {
+        parent::__construct($baseUrl, $token, $client);
     }
-    
+
     public function send(string $path, $body = null): \Psr\Http\Message\ResponseInterface {
         $res = $this->client->get($this->baseUrl . $path, [
             'http_errors' => false,
@@ -20,4 +24,5 @@ class BfacilGetRequest extends AbstractBfacilRequest{
         ]);
         return $res;
     }
+
 }

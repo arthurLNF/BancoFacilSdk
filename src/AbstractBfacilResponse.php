@@ -5,6 +5,9 @@
  *
  * @author Weider
  */
+
+namespace BancoFacilPixSdk;
+
 class AbstractBfacilResponse {
     public string $status;
     public string $error;

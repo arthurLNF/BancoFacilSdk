@@ -4,14 +4,17 @@
  *
  * @author Weider
  */
+
+namespace BancoFacilPixSdk\ConsultaStatusReferencia\Request;
+
 class BfacilConsultaPorReferenciaRequest implements BfacilConsultaPorReferenciaRequestInterface{
-    protected AbstractBfacilRequest $bfacilRequest;
+    protected \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest;
     
-    function __construct(AbstractBfacilRequest $bfacilRequest  = null) {
-        $this->bfacilRequest = $bfacilRequest  ?? new BfacilGetRequest();
+    function __construct(string $baseUrl, string $token, \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest  = null) {
+        $this->bfacilRequest = $bfacilRequest  ?? new \BancoFacilPixSdk\BfacilGetRequest($baseUrl, $token);
     }
     
-    public function buscar($accountId, $referencia): \BfacilConsultaPorReferenciaResponse {
+    public function buscar($accountId, $referencia): \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse {
         try {
             $path = '/api/pix/transacao/referencia/'.$accountId.'/'.$referencia;
             
@@ -20,12 +23,12 @@ class BfacilConsultaPorReferenciaRequest implements BfacilConsultaPorReferenciaR
             $body = json_decode($resp->getBody());
             
             if($status == 200){
-                return new BfacilConsultaPorReferenciaResponse(true, "", $body->transacao);
+                return new \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse(true, "", $body->transacao);
             }else{
-                return new BfacilConsultaPorReferenciaResponse(false, $body->message, "");
+                return new \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse(false, $body->message, "");
             }
         } catch (Exception $ex) {
-            return new BfacilConsultaPorReferenciaResponse(false, $ex->getMessage(), "");
+            return new \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse(false, $ex->getMessage(), "");
         }
     }
 }

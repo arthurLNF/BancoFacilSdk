@@ -12,7 +12,8 @@
     "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "7.0",
-        "phpunit/phpunit": ">9.0"
+        "phpunit/phpunit": ">9.0",
+        "php": ">7.4"
     },
     "autoload": {
         "psr-4": {

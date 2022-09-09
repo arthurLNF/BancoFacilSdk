@@ -10,15 +10,15 @@ namespace BancoFacilPixSdk;
 
 class BfacilGetRequest extends AbstractBfacilRequest {
 
-    function __construct(string $baseUrl, string $token, \GuzzleHttp\ClientInterface $client = null) {
-        parent::__construct($baseUrl, $token, $client);
+    function __construct(string $baseUrl, \GuzzleHttp\ClientInterface $client = null) {
+        parent::__construct($baseUrl, $client);
     }
 
-    public function send(string $path, $body = null): \Psr\Http\Message\ResponseInterface {
+    public function send(string $path, string $token, $body = null): \Psr\Http\Message\ResponseInterface {
         $res = $this->client->get($this->baseUrl . $path, [
             'http_errors' => false,
             'headers' => [
-                'Authorization' => "Bearer $this->token",
+                'Authorization' => "Bearer $token",
             ],
             'json' => $body
         ]);

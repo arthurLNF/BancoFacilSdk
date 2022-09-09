@@ -10,6 +10,7 @@ namespace BancoFacilPixSdk\PixImediato\Repository;
 interface BfacilPixImediatoRepositoryInterface {
 
     public function gerarPixImediato(
+            string $token,
             float $valor,
             string $chave,
             string $accountId,

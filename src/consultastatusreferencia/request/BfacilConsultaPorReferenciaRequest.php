@@ -10,15 +10,15 @@ namespace BancoFacilPixSdk\ConsultaStatusReferencia\Request;
 class BfacilConsultaPorReferenciaRequest implements BfacilConsultaPorReferenciaRequestInterface{
     protected \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest;
     
-    function __construct(string $baseUrl, string $token, \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest  = null) {
-        $this->bfacilRequest = $bfacilRequest  ?? new \BancoFacilPixSdk\BfacilGetRequest($baseUrl, $token);
+    function __construct(string $baseUrl, \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest  = null) {
+        $this->bfacilRequest = $bfacilRequest  ?? new \BancoFacilPixSdk\BfacilGetRequest($baseUrl);
     }
     
-    public function buscar($accountId, $referencia): \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse {
+    public function buscar(string $token, string $accountId, string $referencia): \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse {
         try {
             $path = '/api/pix/transacao/referencia/'.$accountId.'/'.$referencia;
             
-            $resp = $this->bfacilRequest->send($path);
+            $resp = $this->bfacilRequest->send($path, $token);
             $status = $resp->getStatusCode();
             $body = json_decode($resp->getBody());
             

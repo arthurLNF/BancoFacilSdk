@@ -12,16 +12,17 @@ class BfacilPixImediatoRequest implements BfacilPixImediatoRequestInterface {
 
     private \BancoFacilPixSdk\AbstractBfacilRequest $bfacilRequest;
 
-    function __construct(string $baseUrl, string $token, AbstractBfacilRequest $bfacilRequest = null) {
-        $this->bfacilRequest = $bfacilRequest ?? new \BancoFacilPixSdk\BfacilPostRequest($baseUrl, $token);
+    function __construct(string $baseUrl, AbstractBfacilRequest $bfacilRequest = null) {
+        $this->bfacilRequest = $bfacilRequest ?? new \BancoFacilPixSdk\BfacilPostRequest($baseUrl);
     }
 
     public function gerar(
+            string $token,
             \BancoFacilPixSdk\PixImediato\Body\BfacilPixImediatoBody $bfacilPixImediatoBody
     ): \BancoFacilPixSdk\PixImediato\Response\BfacilPixImediatoResponse {
         try {
             $path = '/api/pix/imediato/gerar';
-            $response = $this->bfacilRequest->send($path, $bfacilPixImediatoBody);
+            $response = $this->bfacilRequest->send($path, $token, $bfacilPixImediatoBody);
             $status = $response->getStatusCode();
             $body = json_decode($response->getBody());
 

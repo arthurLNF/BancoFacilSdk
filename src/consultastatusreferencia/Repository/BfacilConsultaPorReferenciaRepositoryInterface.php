@@ -15,5 +15,5 @@ namespace BancoFacilPixSdk\ConsultaStatusReferencia\Repository;
 
 interface BfacilConsultaPorReferenciaRepositoryInterface {
 
-    function buscar(string $accountId, string $referencia): \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse;
+    function buscar(string $token, string $accountId, string $referencia): \BancoFacilPixSdk\ConsultaStatusReferencia\Response\BfacilConsultaPorReferenciaResponse;
 }
